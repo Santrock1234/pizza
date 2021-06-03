@@ -1,0 +1,96 @@
+source.cpp
+///////////////////////////////////////////////////////////////////
+#include "pizza.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+
+using namespace std;
+void print( Pizza& Pizza);
+int main() {
+	Pizza peperonni("peperonni", 3, 25);
+	peperonni.addTopping("peperonni");
+	print(peperonni);
+	return 0;
+}
+void print( Pizza& Pizza)
+{
+	cout << "Name " << Pizza.getName() << endl;
+	cout << "Cost: $ " << Pizza.getCost()<< endl;
+	cout << "Diameter " << Pizza.getDiameter() <<" CM"<< endl;
+	cout << "Toppings: " << endl;
+	Pizza.printToppings();
+	cout << endl;
+}
+//////////////////////////////////////////////////////////////////////////
+pizza.cpp
+//////////////////////////////////////////////////////////////////////////
+
+#include "pizza.h"
+#include<string>
+#include <iostream>
+
+Pizza::Pizza(string name, int cost, int diameter) {
+	this->name = name;
+	this->cost = cost;
+	this->diameter = diameter;
+	toppings.push_back("cheese");
+}
+
+int Pizza::getCost()const
+{
+	return cost;
+}
+
+void Pizza::addTopping(string topping) 
+{
+	toppings.push_back(topping);
+
+}
+void Pizza::printToppings()
+{
+	
+		for (string topping : toppings)
+		{
+			cout << "/t" << topping << endl;
+	}
+}
+int Pizza::getDiameter()const {
+	return diameter;
+}
+string Pizza::getName()const
+{
+	return name;
+}
+/////////////////////////////////////////////////////////////////////
+pizza.h
+/////////////////////////////////////////////////////////////////
+#ifndef PIZZA_H
+#define PIZZA_H
+#include<string>
+#include<vector>
+
+using namespace std;
+
+
+class Pizza
+{
+public:
+	Pizza(string name, int cost, int diameter);
+	void addTopping(string topping);
+	int getCost()const ;
+	void printToppings();
+	string getName()const;
+	int getDiameter()const;
+
+
+
+private:
+	string name;
+	int cost;
+	int diameter;
+	vector <string> toppings;
+};
+
+#endif
